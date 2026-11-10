@@ -1,167 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#09090b" />
-  <meta name="description" content="Puhazhendi M. — B.Tech Information Technology student, aspiring developer, and lifelong learner." />
-  <title>Puhazhendi M. — Developer Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+  <meta name="description" content="Puhazhendi M. — B.Tech IT student, learner and aspiring developer. Explore projects, skills and certificates.">
+  <title>Puhazhendi M. | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-        colors: { ink: '#09090b', panel: '#111114', line: '#27272a', muted: '#a1a1aa', accent: '#a3e635' },
-        boxShadow: { glow: '0 0 60px rgba(163,230,53,.10)' }
-      }}
-    };
-  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: dark; }
-    body { background:#09090b; }
-    .grid-bg { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 46px 46px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
-    .gradient-text { background:linear-gradient(100deg,#fafafa 15%,#a3e635 85%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .glass { background:rgba(17,17,20,.72); backdrop-filter:blur(14px); }
-    .card { border:1px solid #27272a; background:linear-gradient(145deg,rgba(24,24,27,.92),rgba(14,14,16,.94)); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
-    .card:hover { transform:translateY(-4px); border-color:#52525b; box-shadow:0 18px 50px rgba(0,0,0,.24); }
+    :root { color-scheme: dark; --lime:#b7f36b; }
+    * { scroll-behavior:smooth; }
+    body { margin:0; background:#08090d; color:#f4f4f5; font-family:'Space Grotesk',sans-serif; }
     .mono { font-family:'DM Mono',monospace; }
-    .section-anchor { scroll-margin-top: 100px; }
-    ::selection { background:#a3e635; color:#09090b; }
+    .grid-bg { background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:48px 48px; mask-image:linear-gradient(to bottom,black,transparent 90%); }
+    .gradient { background:linear-gradient(100deg,#fff 15%,#b7f36b 85%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .glass { background:rgba(12,13,18,.78); backdrop-filter:blur(16px); }
+    .card { background:linear-gradient(145deg,rgba(24,25,32,.96),rgba(13,14,19,.98)); border:1px solid #292b35; transition:.25s ease; }
+    .card:hover { transform:translateY(-5px); border-color:#64734d; box-shadow:0 20px 60px #0006; }
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .cert-img { width:100%; height:220px; object-fit:contain; background:#f4f4f5; border-radius:12px; cursor:zoom-in; }
+    .modal { display:none; position:fixed; inset:0; z-index:100; background:#000e; padding:20px; align-items:center; justify-content:center; }
+    .modal.open { display:flex; }
+    .modal img { max-width:95vw; max-height:88vh; object-fit:contain; border-radius:12px; }
+    input,textarea { background:#0b0c11; border:1px solid #343642; outline:none; }
+    input:focus,textarea:focus { border-color:var(--lime); }
+    .typing-cursor::after { content:'|'; color:var(--lime); animation:blink .8s infinite; }
+    @keyframes blink { 50%{opacity:0} }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
 </head>
-<body class="text-zinc-100 antialiased">
-  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+<body>
+  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
     <div class="grid-bg absolute inset-0"></div>
-    <div class="absolute -top-56 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-lime-400/10 blur-[130px]"></div>
+    <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-lime-300/10 blur-[150px]"></div>
   </div>
 
-  <header class="fixed top-0 z-50 w-full border-b border-white/[.07] glass">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-      <a href="#home" class="mono text-sm tracking-tight text-white"><span class="text-lime-300">p</span>uhazhendi<span class="text-zinc-500">.dev</span></a>
-      <div class="hidden items-center gap-7 text-sm text-zinc-400 md:flex">
-        <a class="hover:text-white transition" href="#about">About</a>
-        <a class="hover:text-white transition" href="#skills">Skills</a>
-        <a class="hover:text-white transition" href="#projects">Projects</a>
-        <a class="hover:text-white transition" href="#journey">Journey</a>
-        <a class="hover:text-white transition" href="#contact">Contact</a>
+  <header class="fixed top-0 z-50 w-full border-b border-white/10 glass">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
+      <a href="#home" class="mono text-sm tracking-tight">puhazhendi<span class="text-lime-300">.dev</span></a>
+      <div class="hidden md:flex gap-7 text-sm text-zinc-400">
+        <a href="#about" class="hover:text-white">About</a><a href="#skills" class="hover:text-white">Skills</a>
+        <a href="#projects" class="hover:text-white">Projects</a><a href="#certificates" class="hover:text-white">Certificates</a>
+        <a href="#contact" class="hover:text-white">Contact</a>
       </div>
-      <a href="#contact" class="rounded-full border border-zinc-700 px-4 py-2 text-xs font-medium text-white transition hover:border-lime-300 hover:text-lime-200">Let's connect <span aria-hidden="true">↗</span></a>
+      <a href="#contact" class="rounded-full border border-zinc-700 px-4 py-2 text-xs hover:border-lime-300">Let's connect ↗</a>
     </nav>
   </header>
 
-  <main id="home" class="mx-auto max-w-6xl px-5">
-    <section class="relative flex min-h-[92vh] flex-col justify-center pb-20 pt-36">
-      <div class="mb-7 flex items-center gap-3">
-        <span class="h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_14px_#a3e635]"></span>
-        <span class="mono text-xs uppercase tracking-[.22em] text-zinc-400">B.Tech IT student · Open to learning</span>
+  <main id="home" class="max-w-6xl mx-auto px-5">
+    <section class="min-h-[92vh] flex flex-col justify-center pt-32 pb-20">
+      <div class="flex items-center gap-3 mb-7"><span class="w-2 h-2 bg-lime-300 rounded-full shadow-[0_0_15px_#b7f36b]"></span><span class="mono text-xs tracking-[.2em] uppercase text-zinc-400">B.Tech Information Technology · Student</span></div>
+      <p class="mono text-sm text-zinc-500 mb-4">HELLO, WORLD. I'M</p>
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-[-.06em] leading-[1.04]">Puhazhendi<br><span class="gradient">M.</span></h1>
+      <div class="mt-7 text-xl sm:text-2xl text-zinc-300 h-9"><span id="typed" class="typing-cursor">Dreamer</span></div>
+      <p class="mt-6 max-w-2xl text-zinc-400 leading-8">An aspiring developer at <strong class="text-zinc-200">Sri Sairam Engineering College</strong>. Exploring technology, building ideas, and learning something new with every experience.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#projects" class="rounded-full bg-lime-300 text-zinc-950 font-semibold px-6 py-3 text-sm hover:bg-lime-200">Explore my work ↗</a>
+        <a href="https://www.linkedin.com/in/puhazhendi-m-b39922435/" target="_blank" rel="noopener" class="rounded-full border border-zinc-700 px-6 py-3 text-sm hover:border-zinc-400"><i data-lucide="linkedin" class="inline w-4 h-4 mr-2"></i>LinkedIn</a>
       </div>
-      <h1 class="max-w-4xl text-5xl font-semibold leading-[1.08] tracking-[-.055em] sm:text-7xl lg:text-8xl">
-        Building my path<br><span class="gradient-text">one idea at a time.</span>
-      </h1>
-      <p class="mt-8 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
-        Hi, I'm <strong class="font-semibold text-zinc-100">Puhazhendi M.</strong> — an Information Technology student at Sri Sairam Engineering College, curious about technology, problem-solving, and turning ideas into useful projects.
-      </p>
-      <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a href="#projects" class="inline-flex items-center gap-2 rounded-full bg-lime-300 px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-lime-200">Explore my work <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
-        <a href="https://www.linkedin.com/in/puhazhendi-m-b39922435/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:bg-white/5"><i data-lucide="linkedin" class="h-4 w-4"></i> LinkedIn</a>
-      </div>
-      <div class="mt-16 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3">
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4"><p class="mono text-xs text-zinc-500">EDUCATION</p><p class="mt-2 text-sm font-medium">B.Tech · IT</p></div>
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4"><p class="mono text-xs text-zinc-500">12TH STANDARD</p><p class="mt-2 text-sm font-medium">517 / 600</p></div>
-        <div class="col-span-2 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:col-span-1"><p class="mono text-xs text-zinc-500">10TH STANDARD</p><p class="mt-2 text-sm font-medium">444 / 500</p></div>
-      </div>
-      <div class="absolute bottom-8 right-0 hidden items-center gap-2 text-xs text-zinc-600 md:flex"><span class="mono">SCROLL TO EXPLORE</span><i data-lucide="arrow-down" class="h-3 w-3"></i></div>
-    </section>
-
-    <section id="about" class="section-anchor border-t border-zinc-800/80 py-24">
-      <div class="grid gap-12 md:grid-cols-[.7fr_1.3fr]">
-        <div><p class="mono text-xs uppercase tracking-[.2em] text-lime-300">01 / About</p><h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">A curious mind.<br><span class="text-zinc-500">A growing journey.</span></h2></div>
-        <div class="space-y-5 text-[15px] leading-8 text-zinc-400">
-          <p>I'm pursuing B.Tech in Information Technology at <strong class="text-zinc-200">Sri Sairam Engineering College</strong>. I enjoy exploring how software and technology can solve everyday problems, and I’m steadily building my skills through coursework, hands-on practice, and projects.</p>
-          <p>My school years helped me develop a foundation in learning through consistent exam practice, classroom activities, language exercises, and vocabulary building. Those experiences taught me to prepare, keep improving, and approach new challenges with confidence.</p>
-          <p>I believe progress comes from staying curious, learning by doing, and being willing to start small. This portfolio is a snapshot of that journey — still in progress, with plenty more to build.</p>
-          <div class="flex flex-wrap gap-2 pt-2">
-            <span class="rounded-full border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300">Problem solving</span><span class="rounded-full border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300">Continuous learning</span><span class="rounded-full border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300">Hands-on practice</span>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl mt-16">
+        <div class="card rounded-2xl p-4"><p class="mono text-[10px] text-zinc-500">DEGREE</p><p class="mt-2 font-semibold">B.Tech · IT</p></div>
+        <div class="card rounded-2xl p-4"><p class="mono text-[10px] text-zinc-500">12TH STANDARD</p><p class="mt-2 font-semibold">517 / 600</p></div>
+        <div class="card rounded-2xl p-4 col-span-2 sm:col-span-1"><p class="mono text-[10px] text-zinc-500">10TH STANDARD</p><p class="mt-2 font-semibold">444 / 500</p></div>
       </div>
     </section>
 
-    <section id="skills" class="section-anchor border-t border-zinc-800/80 py-24">
-      <div class="mb-12 flex flex-wrap items-end justify-between gap-4"><div><p class="mono text-xs uppercase tracking-[.2em] text-lime-300">02 / Tech stack</p><h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Tools I'm learning with.</h2></div><p class="max-w-sm text-sm leading-6 text-zinc-500">A growing toolkit. I’m focused on strengthening fundamentals through practice and projects.</p></div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="card rounded-2xl p-5"><i data-lucide="code-2" class="h-5 w-5 text-lime-300"></i><h3 class="mt-5 font-semibold">Programming</h3><p class="mt-2 text-sm text-zinc-500">C · C++ · JavaScript</p></div>
-        <div class="card rounded-2xl p-5"><i data-lucide="panels-top-left" class="h-5 w-5 text-lime-300"></i><h3 class="mt-5 font-semibold">Web basics</h3><p class="mt-2 text-sm text-zinc-500">HTML · CSS · Tailwind CSS</p></div>
-        <div class="card rounded-2xl p-5"><i data-lucide="cpu" class="h-5 w-5 text-lime-300"></i><h3 class="mt-5 font-semibold">Hands-on tech</h3><p class="mt-2 text-sm text-zinc-500">Arduino · Electronics practice</p></div>
-        <div class="card rounded-2xl p-5"><i data-lucide="lightbulb" class="h-5 w-5 text-lime-300"></i><h3 class="mt-5 font-semibold">Core strengths</h3><p class="mt-2 text-sm text-zinc-500">Logical thinking · Research · Learning</p></div>
-      </div>
-      <p class="mt-4 text-xs text-zinc-600">Skills shown represent learning and practice areas, not a claim of professional mastery.</p>
-    </section>
-
-    <section id="projects" class="section-anchor border-t border-zinc-800/80 py-24">
-      <div class="mb-12"><p class="mono text-xs uppercase tracking-[.2em] text-lime-300">03 / Selected ideas</p><h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Ideas worth exploring.</h2><p class="mt-3 max-w-xl text-sm leading-6 text-zinc-500">A few concepts from my learning and ideation journey. These are presented as project ideas and explorations.</p></div>
-      <div class="grid gap-5 md:grid-cols-2">
-        <article class="card group rounded-2xl p-6 sm:p-7">
-          <div class="flex items-start justify-between"><div class="rounded-xl border border-zinc-700 bg-zinc-800/70 p-3"><i data-lucide="audio-lines" class="h-5 w-5 text-lime-300"></i></div><span class="mono text-[10px] uppercase tracking-widest text-zinc-500">Concept · IoT</span></div>
-          <h3 class="mt-7 text-xl font-semibold">Data Through Light</h3><p class="mt-3 text-sm leading-7 text-zinc-400">An exploration of sending information using light, combining an Arduino-based setup with JavaScript as part of an experimental communication concept.</p>
-          <div class="mt-6 flex flex-wrap gap-2"><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Arduino</span><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">JavaScript</span><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Electronics</span></div>
-        </article>
-        <article class="card group rounded-2xl p-6 sm:p-7">
-          <div class="flex items-start justify-between"><div class="rounded-xl border border-zinc-700 bg-zinc-800/70 p-3"><i data-lucide="heart-pulse" class="h-5 w-5 text-lime-300"></i></div><span class="mono text-[10px] uppercase tracking-widest text-zinc-500">Ideation · Healthcare</span></div>
-          <h3 class="mt-7 text-xl font-semibold">Rural Healthcare Access</h3><p class="mt-3 text-sm leading-7 text-zinc-400">A concept focused on improving access to timely healthcare support for rural communities through a technology-enabled approach.</p>
-          <div class="mt-6 flex flex-wrap gap-2"><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Problem solving</span><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Healthcare</span><span class="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">Ideathon</span></div>
-        </article>
+    <section id="about" class="reveal border-t border-zinc-800 py-20 grid md:grid-cols-[.7fr_1.3fr] gap-10">
+      <div><p class="mono text-xs text-lime-300 tracking-widest">01 / ABOUT ME</p><h2 class="text-4xl font-bold mt-4">Curious by nature.<br><span class="text-zinc-500">Driven to create.</span></h2></div>
+      <div class="text-zinc-400 leading-8 space-y-4">
+        <p>I'm Puhazhendi M, pursuing B.Tech in Information Technology at Sri Sairam Engineering College. I'm interested in programming, artificial intelligence, web development, and using technology to solve practical problems.</p>
+        <p>My school experience helped me build a strong learning foundation through regular exam practice, language activities, IELTS-style exercises, and vocabulary-building practice. These experiences encouraged consistency, confidence, and curiosity.</p>
+        <p>I enjoy learning by doing — from exploring programming fundamentals to participating in workshops, webinars, quizzes, and technical learning programmes.</p>
       </div>
     </section>
 
-    <section id="journey" class="section-anchor border-t border-zinc-800/80 py-24">
-      <div class="grid gap-12 md:grid-cols-[.7fr_1.3fr]">
-        <div><p class="mono text-xs uppercase tracking-[.2em] text-lime-300">04 / Journey</p><h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Learning never stops.</h2></div>
-        <div class="space-y-0">
-          <div class="relative border-l border-zinc-700 pb-9 pl-7"><span class="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-lime-300"></span><p class="mono text-xs text-zinc-500">SCHOOL YEARS</p><h3 class="mt-2 font-semibold">Building the foundation</h3><p class="mt-2 text-sm leading-7 text-zinc-400">Completed school with 444/500 in 10th standard and 517/600 in 12th standard. Regular exam practice, language activities, and vocabulary exercises helped shape my study habits.</p></div>
-          <div class="relative border-l border-zinc-700 pb-9 pl-7"><span class="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-zinc-500"></span><p class="mono text-xs text-zinc-500">CURRENT</p><h3 class="mt-2 font-semibold">B.Tech Information Technology</h3><p class="mt-2 text-sm leading-7 text-zinc-400">Studying at Sri Sairam Engineering College, exploring programming, engineering fundamentals, and practical lab activities.</p></div>
-          <div class="relative border-l border-zinc-700 pb-9 pl-7"><span class="absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full bg-zinc-500"></span><p class="mono text-xs text-zinc-500">ONGOING</p><h3 class="mt-2 font-semibold">Courses & skill development</h3><p class="mt-2 text-sm leading-7 text-zinc-400">Continuing to learn through course work, certificate learning, SkillRack practice, and hands-on experiences. New milestones will be added as I grow.</p></div>
-        </div>
+    <section id="skills" class="reveal border-t border-zinc-800 py-20">
+      <p class="mono text-xs text-lime-300 tracking-widest">02 / TECH STACK</p><h2 class="text-4xl font-bold mt-4">Learning. Practising. Growing.</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-9">
+        <div class="card rounded-2xl p-5"><i data-lucide="code-2" class="text-lime-300"></i><h3 class="font-semibold mt-5">Programming</h3><p class="text-sm text-zinc-500 mt-2">C · C++ · JavaScript</p></div>
+        <div class="card rounded-2xl p-5"><i data-lucide="panels-top-left" class="text-lime-300"></i><h3 class="font-semibold mt-5">Web development</h3><p class="text-sm text-zinc-500 mt-2">HTML · CSS · Tailwind CSS</p></div>
+        <div class="card rounded-2xl p-5"><i data-lucide="brain-circuit" class="text-lime-300"></i><h3 class="font-semibold mt-5">Exploring AI</h3><p class="text-sm text-zinc-500 mt-2">AI fundamentals · Responsible AI</p></div>
+        <div class="card rounded-2xl p-5"><i data-lucide="cpu" class="text-lime-300"></i><h3 class="font-semibold mt-5">Hands-on learning</h3><p class="text-sm text-zinc-500 mt-2">Arduino · IoT concepts · SkillRack</p></div>
       </div>
+      <p class="text-xs text-zinc-600 mt-4">These are learning and practice areas; proficiency grows with continued work.</p>
     </section>
 
-    <section id="contact" class="section-anchor border-t border-zinc-800/80 py-24">
-      <div class="grid gap-12 md:grid-cols-2">
-        <div><p class="mono text-xs uppercase tracking-[.2em] text-lime-300">05 / Contact</p><h2 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Have an idea?<br><span class="text-zinc-500">Let's connect.</span></h2><p class="mt-5 max-w-md text-sm leading-7 text-zinc-400">Interested in technology, student projects, learning opportunities, or collaboration? Feel free to reach out.</p><a class="mt-8 inline-flex items-center gap-2 text-sm text-zinc-200 hover:text-lime-300" href="https://www.linkedin.com/in/puhazhendi-m-b39922435/" target="_blank" rel="noreferrer"><i data-lucide="linkedin" class="h-4 w-4"></i> Connect on LinkedIn <i data-lucide="arrow-up-right" class="h-3 w-3"></i></a></div>
-        <form id="contactForm" class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 sm:p-8">
-          <label class="mb-2 block text-xs font-medium text-zinc-400" for="name">Your name</label><input id="name" name="name" required class="mb-5 w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition focus:border-lime-300" placeholder="Enter your name">
-          <label class="mb-2 block text-xs font-medium text-zinc-400" for="email">Email address</label><input id="email" name="email" type="email" required class="mb-5 w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition focus:border-lime-300" placeholder="you@example.com">
-          <label class="mb-2 block text-xs font-medium text-zinc-400" for="message">Message</label><textarea id="message" name="message" required rows="4" class="mb-5 w-full resize-y rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-3 text-sm outline-none transition focus:border-lime-300" placeholder="Tell me what you're thinking..."></textarea>
-          <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-lime-200">Send message <i data-lucide="send" class="h-4 w-4"></i></button>
-          <p id="formNote" class="mt-3 text-xs leading-5 text-zinc-500">This opens your email app with the message prepared. Add your email address below in the code to receive submissions directly.</p>
-        </form>
+    <section id="projects" class="reveal border-t border-zinc-800 py-20">
+      <p class="mono text-xs text-lime-300 tracking-widest">03 / PROJECT IDEAS</p><h2 class="text-4xl font-bold mt-4">Ideas into possibilities.</h2>
+      <div class="grid md:grid-cols-2 gap-5 mt-9">
+        <article class="card rounded-2xl p-6"><span class="mono text-[10px] text-zinc-500">IOT · COMMUNICATION</span><i data-lucide="lightbulb" class="text-lime-300 w-7 h-7 mt-5"></i><h3 class="text-xl font-semibold mt-5">Data Through Light</h3><p class="text-sm text-zinc-400 leading-7 mt-3">An exploration of light-based data communication using an Arduino prototype concept and JavaScript.</p><p class="text-xs text-zinc-500 mt-5">Arduino · JavaScript · Li-Fi concepts</p></article>
+        <article class="card rounded-2xl p-6"><span class="mono text-[10px] text-zinc-500">SOCIAL IMPACT · HEALTHCARE</span><i data-lucide="heart-pulse" class="text-lime-300 w-7 h-7 mt-5"></i><h3 class="text-xl font-semibold mt-5">NEER — Rural Healthcare Access</h3><p class="text-sm text-zinc-400 leading-7 mt-3">A student project concept exploring how a digital platform could help rural residents and healthcare workers access useful health information.</p><p class="text-xs text-zinc-500 mt-5">Web app concept · Community support</p></article>
+        <article class="card rounded-2xl p-6"><span class="mono text-[10px] text-zinc-500">AI · AGRICULTURE</span><i data-lucide="sprout" class="text-lime-300 w-7 h-7 mt-5"></i><h3 class="text-xl font-semibold mt-5">VIZHI — Plant Health Detection</h3><p class="text-sm text-zinc-400 leading-7 mt-3">An AI-assisted plant disease detection idea designed around crop images and accessible guidance for growers.</p><p class="text-xs text-zinc-500 mt-5">AI exploration · Image recognition</p></article>
       </div>
+      <p class="text-xs text-zinc-600 mt-4">Projects above are described as concepts and explorations, not as completed or deployed products.</p>
+    </section>
+
+    <section id="certificates" class="reveal border-t border-zinc-800 py-20">
+      <div class="flex flex-wrap justify-between items-end gap-4"><div><p class="mono text-xs text-lime-300 tracking-widest">04 / CERTIFICATES & ACHIEVEMENTS</p><h2 class="text-4xl font-bold mt-4">Learning milestones.</h2><p class="text-sm text-zinc-500 mt-3">Workshops, courses, webinars and participation certificates.</p></div><span class="mono text-xs text-zinc-500">10 UPLOADED IMAGES</span></div>
+      <div id="certificateGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-9"></div>
+    </section>
+
+    <section id="contact" class="reveal border-t border-zinc-800 py-20 grid md:grid-cols-2 gap-12">
+      <div><p class="mono text-xs text-lime-300 tracking-widest">05 / CONTACT</p><h2 class="text-4xl sm:text-5xl font-bold mt-4">Let's build<br><span class="text-zinc-500">something useful.</span></h2><p class="text-zinc-400 leading-7 mt-5 max-w-md">Interested in student projects, technology, learning opportunities, or collaboration? Connect with me.</p><a href="https://www.linkedin.com/in/puhazhendi-m-b39922435/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-lime-300 mt-7">Connect on LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a></div>
+      <form id="contactForm" class="card rounded-2xl p-6">
+        <label class="text-xs text-zinc-400">Your name</label><input required name="name" class="w-full rounded-xl px-4 py-3 mt-2 mb-4 text-sm" placeholder="Name">
+        <label class="text-xs text-zinc-400">Your email</label><input required type="email" name="email" class="w-full rounded-xl px-4 py-3 mt-2 mb-4 text-sm" placeholder="name@example.com">
+        <label class="text-xs text-zinc-400">Message</label><textarea required name="message" rows="4" class="w-full rounded-xl px-4 py-3 mt-2 mb-4 text-sm" placeholder="Write your message..."></textarea>
+        <button class="w-full rounded-xl bg-lime-300 text-zinc-950 font-semibold py-3 text-sm hover:bg-lime-200">Prepare email ↗</button>
+        <p class="text-xs text-zinc-600 mt-3">Set your email address in the JavaScript below to receive messages.</p>
+      </form>
     </section>
   </main>
 
-  <footer class="border-t border-zinc-800/80">
-    <div class="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-7 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
-      <p>© <span id="year"></span> Puhazhendi M. Crafted with curiosity.</p>
-      <a href="#home" class="inline-flex items-center gap-2 hover:text-zinc-300">Back to top <i data-lucide="arrow-up" class="h-3 w-3"></i></a>
-    </div>
-  </footer>
+  <footer class="border-t border-zinc-800 py-7 px-5 text-center text-xs text-zinc-600">© <span id="year"></span> Puhazhendi M. · Built with curiosity.</footer>
+
+  <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button id="closeModal" class="absolute top-5 right-5 rounded-full bg-white/10 px-4 py-2 text-white">Close ✕</button>
+    <img id="modalImage" src="" alt="Certificate full preview">
+  </div>
 
   <script>
     lucide.createIcons();
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('contactForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      const data = new FormData(this);
-      const name = String(data.get('name')).trim();
-      const email = String(data.get('email')).trim();
-      const message = String(data.get('message')).trim();
-      const subject = encodeURIComponent('Portfolio contact from ' + name);
-      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-      // Replace the address below with your preferred email to receive messages.
+
+    // Animated intro text
+    const phrases = ["Dreamer", "Learner", "Aspiring Developer", "Technology Explorer"];
+    const typed = document.getElementById("typed");
+    let phraseIndex = 0, charIndex = 0, deleting = false;
+    function typeLoop() {
+      const phrase = phrases[phraseIndex];
+      typed.textContent = phrase.slice(0, charIndex);
+      if (!deleting && charIndex < phrase.length) { charIndex++; setTimeout(typeLoop, 95); }
+      else if (!deleting) { deleting = true; setTimeout(typeLoop, 1150); }
+      else if (charIndex > 0) { charIndex--; setTimeout(typeLoop, 45); }
+      else { deleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; setTimeout(typeLoop, 250); }
+    }
+    typeLoop();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Certificate gallery: image files live in the certificates folder.
+    const certificates = [
+      ["Agentic AI Webinar", "BrandMank Academy · Participation", "agentic-ai-webinar.jpg"],
+      ["IBM AI Essentials V2", "IBM Developer Skills Network · Badge", "ibm-ai-essentials-badge.jpg"],
+      ["IBM AI Essentials V2", "IBM / Coursera · Digital credential", "ibm-ai-essentials-coursera-badge.jpg"],
+      ["Introduction to Artificial Intelligence", "IBM · Coursera course certificate", "ibm-introduction-to-ai.jpg"],
+      ["Code Mastery Workshop", "AuraType · Participation · 24 October 2026", "auratype-code-mastery.jpg"],
+      ["Learnathon '26 — Microsoft 365 Copilot Agents", "Microsoft Learn · 22 October 2026", "microsoft-learnathon-copilot-agents.jpg"],
+      ["Explore Responsible AI", "Microsoft Learn · 20 October 2026", "microsoft-responsible-ai.jpg"],
+      ["Quizathon", "IEEE Professional Communication Society · Sairam", "ieee-quizathon.jpg"],
+      ["EDSpark Web Development Workshop", "IEEE Education Society · 10–11 October 2026", "edspark-web-development.jpg"],
+      ["Viksit Bharat Young Leaders Dialogue Quiz", "Ministry of Youth Affairs & Sports · 12 September 2026", "viksit-bharat-young-leaders-dialogue.jpg"]
+    ];
+    const grid = document.getElementById('certificateGrid');
+    certificates.forEach(([title, issuer, file]) => {
+      const card = document.createElement('article');
+      card.className = 'card rounded-2xl p-4';
+      const img = document.createElement('img');
+      img.className = 'cert-img';
+      img.src = 'certificates/' + file;
+      img.alt = title + ' certificate';
+      img.loading = 'lazy';
+      img.addEventListener('click', () => openPreview(img.src, img.alt));
+      const heading = document.createElement('h3');
+      heading.className = 'font-semibold mt-4';
+      heading.textContent = title;
+      const caption = document.createElement('p');
+      caption.className = 'text-xs text-zinc-500 mt-2 leading-5';
+      caption.textContent = issuer;
+      const hint = document.createElement('p');
+      hint.className = 'text-[10px] mono text-lime-300 mt-4';
+      hint.textContent = 'TAP TO VIEW CERTIFICATE ↗';
+      card.append(img, heading, caption, hint);
+      grid.appendChild(card);
+    });
+    const modal = document.getElementById('imageModal');
+    function openPreview(src, alt) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('modalImage').alt = alt;
+      modal.classList.add('open');
+    }
+    function closePreview() { modal.classList.remove('open'); }
+    document.getElementById('closeModal').addEventListener('click', closePreview);
+    modal.addEventListener('click', e => { if (e.target === modal) closePreview(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const subject = encodeURIComponent('Portfolio enquiry from ' + data.get('name'));
+      const body = encodeURIComponent('Name: ' + data.get('name') + '\\nEmail: ' + data.get('email') + '\\n\\n' + data.get('message'));
+      // IMPORTANT: Replace this with your own email address.
       window.location.href = 'mailto:YOUR_EMAIL@example.com?subject=' + subject + '&body=' + body;
     });
   </script>
